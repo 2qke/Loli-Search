@@ -20,8 +20,8 @@ Loli Search aims at delivering true and credible information.
 Loli Search was founded in early 2022 and it enter alpha in march 2022. 
 Loli Search respects user privacy, freedom and their hidden identity.
 
-If you have any questions or suggestions, you can contact us anytime. 
+If you have any questions or suggestions, you can contact me anytime. 
 
-<small>I would like to thank Enver Ege Kızıl for his help.</small>
+<small>I would like to thank @Egozilla for his translation.</small>
 
 E-mail : ozkayayasin964@gmail.com
