@@ -73,7 +73,7 @@ session_start();
     </div>
 </div>
 <div class="container">
-    <div class="row d-flex justify-content-center align-items-center " style="margin-top: -40px">
+    <div class="row d-flex justify-content-center align-items-center" style="margin-top: -40px">
             <img src="images/loli.png" class="img-fluid mb-3" style="max-width: 250px; max-height: 250px;"><br>
             <div class="col-md-6">
                 <div class="form">
@@ -143,7 +143,7 @@ session_start();
                     aria-controls="pills-contact"
                     aria-selected="false"
                 >
-                    Film
+                    Anime
                 </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -162,90 +162,258 @@ session_start();
             </li>
         </ul>
 
-            <div class="card text-white mb-3" style="background-color: #3c3c3c;">
-                <?php
-                $card_wiki = $db->prepare("SELECT card_baslik, card_muted, card_text, card_image FROM tarayici_card_wiki ");
-                $card_wiki->execute(array($q));
-                $kontrol = $card_wiki->fetch(PDO::FETCH_ASSOC);
-                if ($kontrol > 0) {
-                    $sorgu = "SELECT * FROM tarayici_card_wiki WHERE card_baslik = '$q'";
-                    $sorgukontrol = $db->query($sorgu);
-                    while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
-                        echo '<div class="card-header">
-                    <img src="'.$cikti['card_image'].'" class="rounded-1 f-right" style="max-width: 220px;"> 
+        <div class="tab-content" id="pills-tabContent2">
+            <div
+                    class="tab-pane fade show active"
+                    id="pills-home2"
+                    role="tabpanel"
+                    aria-labelledby="pills-home-tab2"
+            >
+                <div class="card text-white mb-3" style="background-color: #3c3c3c;">
+                    <?php
+                    $card_wiki = $db->prepare("SELECT card_baslik, card_muted, card_text, card_image FROM tarayici_card_wiki ");
+                    $card_wiki->execute(array($q));
+                    $kontrol = $card_wiki->fetch(PDO::FETCH_ASSOC);
+                    if ($kontrol > 0) {
+                        $sorgu = "SELECT * FROM tarayici_card_wiki WHERE card_baslik = '$q'";
+                        $sorgukontrol = $db->query($sorgu);
+                        while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
+                            echo '<div class="card-header">
+                    <img src="'.$cikti['card_image'].'" class="rounded-1 f-right" style="max-width: 220px; max-height: 200px;"> 
                     <h1>'. $cikti['card_baslik'] .'</h1>
                     <h5 class="text-muted">'. $cikti['card_muted'] .'</h5>
                     <br>
-                    <p>'. $cikti['card_text'] .'...</p>
-                    <a href="'. $cikti['card_link'] .'"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">'. $cikti['card_kaynak'] .'</div></a>
+                    <p style="max-width: 1010x;">'. $cikti['card_text'] .'...</p>
+                    <a href="'. $cikti['card_link'] .'"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">'. $cikti['card_kaynak'] .'</div>
+                    </a>
+                    
                 </div>';
-                    }
-                }else{
-                    echo '<div class="card-header">
+                        }
+                    }else{
+                        echo '<div class="card-header">
                     <h1 class="text-center">Opps! bir hata meydana geldi!</h1>
                 </div>';
-                }
-                ?>
-            </div>
-        <div class="card text-white f-right col-md-5 mb-3" style="background-color: #3c3c3c; max-width: 520px;">
-            <?php
-            $card_anime = $db->prepare("SELECT anime_title, anime_muted, anime_text, anime_kaynak, anime_link, anime_image FROM tarayici_card_anime ");
-            $anime_sorgu = "SELECT * FROM tarayici_card_anime";
-            $anime_sorgukontrol = $db->query($anime_sorgu);
-            while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
-                echo '<div class="card-header">
-                   <img src="' . $cikti['anime_image'] . '" class="rounded-1 f-right" style="max-width: 150px;"> 
-                   <h1>' . $cikti['anime_title'] . '</h1>
-                   <h5 class="text-muted">' . $cikti['anime_muted'] . '</h5>
-                   <br>
-                   <p>' . $cikti['anime_text'] . '...</p>
-                   <a href="' . $cikti['anime_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['anime_kaynak'] . '</div></a>
-               </div>';
-            }
+                    }
+                    ?>
+                </div>
+                <div class="card text-white mb-3" style="background-color: #3c3c3c;">
+                    <?php
+                    $card_an = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
+                    $card_an->execute(array($q));
+                    $kontrol_an = $card_an->fetch(PDO::FETCH_ASSOC);
+                    if ($kontrol_an > 0) {
+                        $sorgu = "SELECT * FROM tarayici_card_anime_users WHERE user_card_title = '$q'";
+                        $sorgukontrol = $db->query($sorgu);
+                        while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
+                            echo '<div class="card-header">
+                    <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 220px; max-height: 200px;"> 
+                    <h1>' . $cikti['user_card_title'] . '</h1>
+                    <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
+                    <br>
+                    <p style="max-width: 1010x;">' . $cikti['user_card_text'] . '...</p>
+                    <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div>
+                    </a>
+                    
+                </div>';
+                        }
+                    }else{
+                        echo '<div class="card-header">
+                    <h1 class="text-center">Opps! bir hata meydana geldi!</h1>
+                </div>';
+                    }
+                    ?>
+                </div>
+                <div class="col-md-12 text-center">
+                    <?php
+                    require 'php/anime_ekle.php';
+                    ?>
+                </div>
+                <div class="card col-md-7 f-left" style="background-color: #3c3c3c; max-width: 750px;">
+                    <div class="gcse-searchresults-only" style="margin-left: -6px;" id="GoogleImage" runat="server"></div>
+                </div>
+                <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c">
+                    <?php
+                    $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
+                    $anime_sorgu = "SELECT * FROM tarayici_card_anime_users ORDER BY RAND() LIMIT 1";
+                    $anime_sorgukontrol = $db->query($anime_sorgu);
+                    while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<div class="card-header text-center text-white"><small>Random animeler (Ekleyen: ' . $cikti['user_card_username'] . ')</small></div>
+                        <div class="card-header">
+                       <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 150px;"> 
+                       <h1>' . $cikti['user_card_title'] . '</h1>
+                       <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
+                       <br>
+                       <p>' . $cikti['user_card_text'] . '...</p>
+                       <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>
+                    </div><div class="btn-sm btn-outline-info text-center align-self-center" type="button" data-mdb-toggle="modal" data-mdb-target="#animeEkleModal" style="border-radius: 100px; max-width: 300px;" data-ripple-color="dark">Sizde sitenizden link koymak istermisiniz?</div>
+';
+                    }
+                    ?>
+                </div>
+                <!--Bunu okuyan kişiye... bu tarayıcıyı hoşuma gittiği için falan yapmadım çoğu insan böyle düşünür değil mi ben ise
+                içimdeki yanlızlığı bastırmak amacıyla kodlamış bulunmaktayım. o kadar sıkıcı ve kötü bir durum ki kimseye birşey diyememek
+                ve iyi takliti yapmak hayattaki en zor şey olabilir bunun farkında olan kaç kişi vardır bilmem ama ben bunu her zaman yaşıyorum
+                içimdeki küçük çocuğu zorla susturmak ve bile bile başkalarını üzmemek için kendini bastırmak... her neyse demek isteyeceğim şey şu
+                asla pişman olacağınız şeyler yapmayın hayatınızı dolu dolu yaşayın bu yazıyı kim okur bilmem ama içimdekileri biryere boşaltmam gerekiyord
+                kusuruma bakmayın. okuduğunuz için içtenlikle teşekkür ederim...-->
+                <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c;">
+                    <div class="card-header text-center text-white"><small>Sponsor</small></div>
+                    <?php
 
-            ?>
-        </div>
-    <div class="card col-md-7 mt-1" style="background-color: #3c3c3c;" >
-        <div class="tab-content" id="pills-tabContent2">
-            <div
-                class="tab-pane fade show active"
-                id="pills-home2"
-                role="tabpanel"
-                aria-labelledby="pills-home-tab2"
-            >
-                <div class="gcse-searchresults-only" id="GoogleImage" runat="server"></div>
+
+                    ?>
+                </div>
             </div>
             <div
-                class="tab-pane fade"
-                id="pills-profile2"
-                role="tabpanel"
-                aria-labelledby="pills-profile-tab2"
+                    class="tab-pane fade"
+                    id="pills-profile2"
+                    role="tabpanel"
+                    aria-labelledby="pills-profile-tab2"
             >
                 Görsel kısmı
             </div>
             <div
-                class="tab-pane fade"
-                id="pills-contact2"
-                role="tabpanel"
-                aria-labelledby="pills-contact-tab2"
+                    class="tab-pane fade"
+                    id="pills-contact2"
+                    role="tabpanel"
+                    aria-labelledby="pills-contact-tab2"
             >
                 Bilgi kısmı
             </div>
             <div
-                class="tab-pane fade"
-                id="pills-contact3"
-                role="tabpanel"
-                aria-labelledby="pills-contact-tab2"
+                    class="tab-pane fade"
+                    id="pills-contact3"
+                    role="tabpanel"
+                    aria-labelledby="pills-contact-tab2"
             >
                 Film kısmı
             </div>
             <div
-                class="tab-pane fade"
-                id="pills-contact4"
-                role="tabpanel"
-                aria-labelledby="pills-contact-tab2"
+                    class="tab-pane fade"
+                    id="pills-contact4"
+                    role="tabpanel"
+                    aria-labelledby="pills-contact-tab2"
             >
                 Akademi kısmı
+            </div>
+        </div>
+    </div>
+    <div
+            class="modal fade"
+            id="animeEkleModal"
+            data-mdb-backdrop="static"
+            data-mdb-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Anime ekle</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <?php
+                    if(isset($_SESSION['isim'])){
+                        echo '<div class="card-body">
+<ul class="nav nav-pills mb-3 justify-content-center" id="ex1" role="tablist">
+                                  <li class="nav-item" role="presentation">
+                                    <a
+                                      class="nav-link active"
+                                      id="ex1-tab-1"
+                                      data-mdb-toggle="pill"
+                                      href="#ex1-pills-6"
+                                      role="tab"
+                                      aria-controls="ex1-pills-1"
+                                      aria-selected="true"
+                                      >Anime Ekle</a
+                                    >
+                                  </li>
+                                  <li class="nav-item" role="presentation">
+                                    <a
+                                      class="nav-link"
+                                      id="ex1-tab-2"
+                                      data-mdb-toggle="pill"
+                                      href="#ex1-pills-7"
+                                      role="tab"
+                                      aria-controls="ex1-pills-2"
+                                      aria-selected="false"
+                                      >Varolan animeye link ekle</a
+                                    >
+                                  </li>
+                                </ul>
+                                
+                                <div class="tab-content" id="ex1-content">
+                                  <div
+                                    class="tab-pane fade show active"
+                                    id="ex1-pills-6"
+                                    role="tabpanel"
+                                    aria-labelledby="ex1-tab-1"
+                                  >
+                                <form method="post">
+                                  <div class="row mb-4">
+                                    <div class="col">
+                                      <div class="form-outline">
+                                        <input type="text" name="a_adi" id="form3Example1" class="form-control" />
+                                        <label class="form-label" for="form3Example1">Anime Adı</label>
+                                      </div>
+                                    </div>
+                                    <div class="col">
+                                      <div class="form-outline">
+                                        <input type="text" id="form3Example2" name="a_site" class="form-control" />
+                                        <label class="form-label" for="form3Example2">Animenin yüklendiği site</label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                  <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example3" name="a_resim" class="form-control" />
+                                    <label class="form-label" for="form3Example3">Anime resim url</label>
+                                  </div>
+                                
+                                  <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example4" name="a_aciklama" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Anime Açıklama</label>
+                                  </div>
+                                  
+                                  <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example4" name="a_yas" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Anime Yaş sınırı</label>
+                                  </div>
+                                  
+                                  <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example4" name="a_link" class="form-control" />
+                                    <label class="form-label" for="form3Example4">Anime linki</label>
+                                  </div>
+                                   <button type="submit" name="a" class="btn btn-outline-info f-left align-self-center" style="margin-right: 5px;">Ekle!</button>
+                                    <button type="button" class="btn btn-outline-danger" data-mdb-dismiss="modal">Kapat</button><br>
+                                    <small class="text-muted">Spam yapan hesaplar kapatılıcaktır!</small>
+                                </div>
+                             </form>
+                                
+                  <div class="tab-pane fade" id="ex1-pills-7" role="tabpanel" aria-labelledby="ex1-tab-2">
+                     <form method="post">
+                          <div class="form-outline mb-4">
+                            <input type="text" name="l_site" id="form5Example1" class="form-control" />
+                            <label class="form-label" for="form5Example1">Sitenizin Adı</label>
+                          </div>
+
+                          <div class="form-outline mb-4">
+                            <input type="text" name="l_link" id="form5Example2" class="form-control" />
+                            <label class="form-label" for="form5Example2">Anime Linki</label>
+                          </div>
+                         <button type="submit" name="l" class="btn btn-outline-info f-left align-self-center" style="margin-right: 5px;">Ekle!</button>
+                        <button type="button" class="btn btn-outline-danger" data-mdb-dismiss="modal">Kapat</button><br>
+                        <small class="text-muted">Spam yapan hesaplar kapatılıcaktır!</small>         
+                     </form>
+                  </div>
+</div>';
+                    }elseif(!isset($_SESSION['isim'])){
+                        echo '<div class="card-body"><div class="alert alert-danger" role="alert">
+                                  ANİME EKLEMENİZ İÇİN GİRİŞ YAPMANIZ GEREKMEKTEDİR!
+                                </div></div>';
+                    }
+                ?>
             </div>
         </div>
     </div>

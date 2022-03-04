@@ -51,7 +51,6 @@ session_start();
                 ::-webkit-scrollbar {
                     width: 4px;
                     color: #3c3c3c;
-
                 }
             </style>
             <div class="offcanvas-header">

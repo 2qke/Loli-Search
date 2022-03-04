@@ -179,6 +179,13 @@ hr.ince {
 .gsc-orderby-container{
     display: none;
 }
+.gs-spelling{
+    color: #FFFFFF !important;
+}
+
+.gs-result .gs-spelling{
+    color: #FFFFFF !important;
+}
 .gsc-results .gsc-cursor-box {
     background: transparent !important;
     margin-top: 100px
@@ -223,7 +230,16 @@ hr.ince {
     box-sizing: inherit
 }
 
+.gsc-cursor-page{
+    color: #FFFFFF;
+}
 
+.gcsc-find-more-on-google-root .gcsc-more-maybe-branding-box{
+    display: none;
+}
+.gcsc-more-maybe-branding-box{
+    display: none;
+}
 .gsc-results .gsc-cursor-box .gsc-cursor-page.gsc-cursor-current-page {
     color: inherit !important;
     background-color: transparent !important;
@@ -307,7 +323,7 @@ hr.ince {
 }
 
 .gs-spelling, .gs-spelling .gs-spelling-original, .gs-spelling a {
-    color: #373737 !important;
+    color: #FFFFFF !important;
     height: 1.5em;
     font-weight: normal !important;
     font-weight: 500;
