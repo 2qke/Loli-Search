@@ -250,12 +250,7 @@ session_start();
                     }
                     ?>
                 </div>
-                <!--Bunu okuyan kişiye... bu tarayıcıyı hoşuma gittiği için falan yapmadım çoğu insan böyle düşünür değil mi ben ise
-                içimdeki yanlızlığı bastırmak amacıyla kodlamış bulunmaktayım. o kadar sıkıcı ve kötü bir durum ki kimseye birşey diyememek
-                ve iyi takliti yapmak hayattaki en zor şey olabilir bunun farkında olan kaç kişi vardır bilmem ama ben bunu her zaman yaşıyorum
-                içimdeki küçük çocuğu zorla susturmak ve bile bile başkalarını üzmemek için kendini bastırmak... her neyse demek isteyeceğim şey şu
-                asla pişman olacağınız şeyler yapmayın hayatınızı dolu dolu yaşayın bu yazıyı kim okur bilmem ama içimdekileri biryere boşaltmam gerekiyord
-                kusuruma bakmayın. okuduğunuz için içtenlikle teşekkür ederim...-->
+                
                 <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c;">
                     <div class="card-header text-center text-white"><small>Sponsor</small></div>
                     <?php
