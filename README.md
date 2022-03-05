@@ -5,7 +5,7 @@
 Loli Search açık kaynak kodlu bir arama motorudur ve yalnızca kendi sonuçlarını değil, diğer arama motorlarının sonuçlarını da göstermektedir.
 Loli Search, Bir proxy sunucusu mantığında çalışır. LS'e bir istek gönderirseniz giden istek diğer arama motorlarına isimsiz bir istek olarak gidecektir. 
 Loli Search en güvenli bilgileri sağlamayı amaçlar. 
-Loli Search, Mayıs 2022'de geliştirilmeye başlandı ve 2022'nin Mart ayına doğru test aşamasına girdi. 
+Loli Search, 2022'de geliştirilmeye başlandı ve 2022'nin Mart ayına doğru test aşamasına girdi. 
 Kullanıcıların gizliliğine, özgürlüğüne ve anonimliğine saygı duyar ve korur.
 
 Eğer herhangi bir sorunuz varsa benimle iletişime geçebilirsiniz.
