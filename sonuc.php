@@ -251,18 +251,11 @@ session_start();
                            <br>
                            <p>' . $cikti['user_card_text'] . '...</p>
                            <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>';
-                            $link_anime = "SELECT * FROM tarayici_user_link, tarayici_card_anime_users";
+                            $link_anime = "SELECT * FROM tarayici_user_link";
                             $link_kontrol = $db->query($link_anime);
-                            $toplam = $db->prepare("SELECT tarayici_user_link.user_link_anime, tarayici_card_anime_users.user_card_title FROM tarayici_user_link, tarayici_card_anime_users WHERE tarayici_user_link.user_link_anime = tarayici_card_anime_users.user_card_title");
-                            $toplam->execute();
-                            $x = $toplam->fetchColumn();
                             while($cikti2 = $link_kontrol->fetch(PDO::FETCH_ASSOC)){
                                 if($cikti2['user_link_anime'] == $cikti['user_card_title']){
                                     echo '<a href="' . $cikti2['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px; margin-left: 3px;" data-ripple-color="dark">' . $cikti2['user_link_name'] . '</div></a>';
-                                   $x--;
-                                   if($x == 0){
-                                       break;
-                                   }
                                 }
                             }
                         }

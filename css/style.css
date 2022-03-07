@@ -475,6 +475,10 @@ hr.ince {
     background: #332f9e !important
 }
 
+.gs-spelling .gs-result{
+    color: #FFFFFF !important;
+}
+
 .gsc-adBlock {
     display: none !important
 }
@@ -575,7 +579,8 @@ hr.ince {
 }
 
 .gsc-control-cse, .gsc-control-cse .gsc-table-result {
-    font-family: arial !important
+    font-family: arial !important;
+    color: #FFFFFF !important;
 }
 
 .gs-spelling, .gs-spelling .gs-spelling-original, .gsc-cursor-page, .gs-spelling a {
