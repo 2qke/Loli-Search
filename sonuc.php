@@ -16,8 +16,6 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Quicksand:wght@300&family=Zen+Kaku+Gothic+Antique:wght@300&display=swap" rel="stylesheet">
 
-
-
 </head>
 <body style="background-color: #333333">
 
@@ -77,7 +75,7 @@ session_start();
             <img src="images/loli.png" class="img-fluid mb-3" style="max-width: 250px; max-height: 250px;"><br>
             <div class="col-md-6">
                 <div class="form">
-                    <form method="get" action="sonuc.php">
+                    <form method="get">
                         <i class="bi-search" style="margin-top: 5px;"></i>
                         <input type="text" class="form-control form-input" id="inputValue" value="<?php $q = $_GET['q']; echo $q;?>" aria-label="Search" aria-describedby="basic-addon2" name="q" placeholder="Herhangi birşey aratın...">
                         <span class="sol-taraf">
@@ -161,7 +159,6 @@ session_start();
                 </button>
             </li>
         </ul>
-
         <div class="tab-content" id="pills-tabContent2">
             <div
                     class="tab-pane fade show active"
@@ -215,6 +212,15 @@ session_start();
                     </a>
                     
                 </div>';
+                            $card_linkler = $db->prepare("SELECT * FROM tarayici_card_anime_users, tarayici_user_link WHERE tarayici_card_anime_users.user_card_title = tarayici_user_link.user_link_anime");
+                            while ($ciktikontrol = $card_linkler->fetch(PDO::FETCH_ASSOC)){
+                                if($ciktikontrol['user_card_title'] == $ciktikontrol['user_link_anime']){
+                                    echo '<a href="' . $cikti['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_link_name'] . '</div></a>';
+                                }
+                                else{
+                                    echo '<h1 style="color: white">HATA</h1>';
+                                }
+                            }
                         }
                     }else{
                         echo '<div class="card-header">
@@ -233,24 +239,33 @@ session_start();
                 </div>
                 <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c">
                     <?php
-                    $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
-                    $anime_sorgu = "SELECT * FROM tarayici_card_anime_users ORDER BY RAND() LIMIT 1";
-                    $anime_sorgukontrol = $db->query($anime_sorgu);
-                    while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<div class="card-header text-center text-white"><small>Random animeler (Ekleyen: ' . $cikti['user_card_username'] . ')</small></div>
-                        <div class="card-header">
-                       <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 150px;"> 
-                       <h1>' . $cikti['user_card_title'] . '</h1>
-                       <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
-                       <br>
-                       <p>' . $cikti['user_card_text'] . '...</p>
-                       <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>
+                        $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
+                        $anime_sorgu = "SELECT * FROM tarayici_card_anime_users ORDER BY RAND() LIMIT 1";
+                        $anime_sorgukontrol = $db->query($anime_sorgu);
+                        while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<div class="card-header text-center text-white"><small>Random animeler (Ekleyen: ' . $cikti['user_card_username'] . ')</small></div>
+                            <div class="card-header">
+                           <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 150px;"> 
+                           <h1 name="title">' . $cikti['user_card_title'] . '</h1>
+                           <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
+                           <br>
+                           <p>' . $cikti['user_card_text'] . '...</p>
+                           <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>';
+                           $card_linkler = $db->prepare("SELECT * FROM tarayici_card_anime_users INNER JOIN tarayici_user_link ON tarayici_card_anime_users.user_card_title = tarayici_user_link.user_link_animee");
+                           while ($ciktikontrol = $card_linkler->fetch(PDO::FETCH_ASSOC)){
+                               if($ciktikontrol['user_card_title'] == $ciktikontrol['user_link_anime']){
+                                   echo '<a href="' . $cikti['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_link_name'] . '</div></a>';
+                               }
+                               else{
+                                   echo '<h1 style="color: white">HATA</h1>';
+                               }
+                           }
+
+                        }
+                        ?>
+
                     </div><div class="btn-sm btn-outline-info text-center align-self-center" type="button" data-mdb-toggle="modal" data-mdb-target="#animeEkleModal" style="border-radius: 100px; max-width: 300px;" data-ripple-color="dark">Sizde sitenizden link koymak istermisiniz?</div>
-';
-                    }
-                    ?>
                 </div>
-                
                 <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c;">
                     <div class="card-header text-center text-white"><small>Sponsor</small></div>
                     <?php
@@ -365,12 +380,11 @@ session_start();
                                     <input type="text" id="form3Example3" name="a_resim" class="form-control" />
                                     <label class="form-label" for="form3Example3">Anime resim url</label>
                                   </div>
-                                
+                                    <small class="text-muted">Max. 500 karakter</small>
                                   <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example4" name="a_aciklama" class="form-control" />
+                                    <input type="text" id="form3Example4" maxlength="500" name="a_aciklama" class="form-control" />
                                     <label class="form-label" for="form3Example4">Anime Açıklama</label>
                                   </div>
-                                  
                                   <div class="form-outline mb-4">
                                     <input type="text" id="form3Example4" name="a_yas" class="form-control" />
                                     <label class="form-label" for="form3Example4">Anime Yaş sınırı</label>
@@ -388,6 +402,15 @@ session_start();
                                 
                   <div class="tab-pane fade" id="ex1-pills-7" role="tabpanel" aria-labelledby="ex1-tab-2">
                      <form method="post">
+                             <select class="form-select mb-4" name="l_name" aria-label="Default animeler">
+                    <option selected disabled>Anime seçin</option>';
+                        $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
+                        $anime_sorgu = "SELECT * FROM tarayici_card_anime_users";
+                        $anime_sorgukontrol2 = $db->query($anime_sorgu);
+                        while ($cikti = $anime_sorgukontrol2->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<option value="'.$cikti['user_card_title'].'">'.$cikti['user_card_title'].'</option>';
+                        }
+                echo '</select>
                           <div class="form-outline mb-4">
                             <input type="text" name="l_site" id="form5Example1" class="form-control" />
                             <label class="form-label" for="form5Example1">Sitenizin Adı</label>
@@ -413,9 +436,7 @@ session_start();
         </div>
     </div>
 </div>
-    <script>
 
-    </script>
     <script async src="https://cse.google.com/cse.js?cx=89ecf14465e74f30b"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
