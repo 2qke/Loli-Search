@@ -72,24 +72,24 @@ session_start();
 </div>
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center" style="margin-top: -40px">
-            <img src="images/loli.png" class="img-fluid mb-3" style="max-width: 250px; max-height: 250px;"><br>
-            <div class="col-md-6">
-                <div class="form">
-                    <form method="get" action="sonuc.php">
-                        <i class="bi-search" style="margin-top: 5px;"></i>
-                        <input type="text" class="form-control form-input" id="inputValue" value="<?php $q = $_GET['q']; echo $q;?>" aria-label="Search" aria-describedby="basic-addon2" name="q" placeholder="Herhangi birşey aratın...">
-                        <span class="sol-taraf">
+        <img src="images/loli.png" class="img-fluid mb-3" style="max-width: 250px; max-height: 250px;"><br>
+        <div class="col-md-6">
+            <div class="form">
+                <form method="get" action="sonuc.php">
+                    <i class="bi-search" style="margin-top: 5px;"></i>
+                    <input type="text" class="form-control form-input" id="inputValue" value="<?php $q = $_GET['q']; echo $q;?>" aria-label="Search" aria-describedby="basic-addon2" name="q" placeholder="Herhangi birşey aratın...">
+                    <span class="sol-taraf">
                                 <a href="#" class="text-black" data-mdb-container="body" data-mdb-toggle="popover" data-mdb-placement="right" data-mdb-trigger="focus" data-mdb-content="Sayın kullanıcımız bu özellik şuanda kullanılmamaktadır"><i class="bi-mic"></i></a>
                         </span>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
-        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab2" role="tablist" style="margin-top: 30px">
+    </div>
+    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab2" role="tablist" style="margin-top: 30px">
 
-            <li class="nav-item" role="presentation">
+        <li class="nav-item" role="presentation">
 
-                <button
+            <button
                     class="nav-link active"
                     id="pills-home-tab2"
                     data-mdb-toggle="pill"
@@ -98,12 +98,12 @@ session_start();
                     role="tab"
                     aria-controls="pills-home"
                     aria-selected="true"
-                >
-                    Web
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button
+            >
+                Web
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button
                     class="nav-link"
                     id="pills-profile-tab2"
                     data-mdb-toggle="pill"
@@ -112,12 +112,12 @@ session_start();
                     role="tab"
                     aria-controls="pills-profile"
                     aria-selected="false"
-                >
-                    Görsel
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button
+            >
+                Görsel
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button
                     class="nav-link"
                     id="pills-contact-tab2"
                     data-mdb-toggle="pill"
@@ -126,12 +126,12 @@ session_start();
                     role="tab"
                     aria-controls="pills-contact"
                     aria-selected="false"
-                >
-                    Bilgi
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button
+            >
+                Bilgi
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button
                     class="nav-link"
                     id="pills-contact-tab2"
                     data-mdb-toggle="pill"
@@ -140,12 +140,12 @@ session_start();
                     role="tab"
                     aria-controls="pills-contact"
                     aria-selected="false"
-                >
-                    Anime
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button
+            >
+                Anime
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button
                     class="nav-link"
                     id="pills-contact-tab2"
                     data-mdb-toggle="pill"
@@ -154,28 +154,29 @@ session_start();
                     role="tab"
                     aria-controls="pills-contact"
                     aria-selected="false"
-                >
-                    Akademi
-                </button>
-            </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent2">
-            <div
-                    class="tab-pane fade show active"
-                    id="pills-home2"
-                    role="tabpanel"
-                    aria-labelledby="pills-home-tab2"
             >
-                <div class="card text-white mb-3" style="background-color: #3c3c3c;">
-                    <?php
-                    $card_wiki = $db->prepare("SELECT card_baslik, card_muted, card_text, card_image FROM tarayici_card_wiki ");
-                    $card_wiki->execute(array($q));
-                    $kontrol = $card_wiki->fetch(PDO::FETCH_ASSOC);
-                    if ($kontrol > 0) {
-                        $sorgu = "SELECT * FROM tarayici_card_wiki WHERE card_baslik = '$q'";
-                        $sorgukontrol = $db->query($sorgu);
-                        while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
-                            echo '<div class="card-header">
+                Akademi
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent2">
+        <div
+                class="tab-pane fade show active"
+                id="pills-home2"
+                role="tabpanel"
+                aria-labelledby="pills-home-tab2"
+        >
+            <div class="card text-white mb-3" style="background-color: #3c3c3c;">
+                <?php
+
+                $card_wiki = $db->prepare("SELECT card_baslik, card_muted, card_text, card_image FROM tarayici_card_wiki ");
+                $card_wiki->execute(array($q));
+                $kontrol = $card_wiki->fetch(PDO::FETCH_ASSOC);
+                if ($kontrol > 0) {
+                    $sorgu = "SELECT * FROM tarayici_card_wiki WHERE card_baslik LIKE '%$q%';";
+                    $sorgukontrol = $db->query($sorgu);
+                    while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
+                        echo '<div class="card-header">
                     <img src="'.$cikti['card_image'].'" class="rounded-1 f-right" style="max-width: 220px; max-height: 200px;"> 
                     <h1>'. $cikti['card_baslik'] .'</h1>
                     <h5 class="text-muted">'. $cikti['card_muted'] .'</h5>
@@ -185,24 +186,24 @@ session_start();
                     </a>
                     
                 </div>';
-                        }
-                    }else{
-                        echo '<div class="card-header">
+                    }
+                }else{
+                    echo '<div class="card-header">
                     <h1 class="text-center">Opps! bir hata meydana geldi!</h1>
                 </div>';
-                    }
-                    ?>
-                </div>
-                <div class="card text-white mb-3" style="background-color: #3c3c3c;">
-                    <?php
-                    $card_an = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
-                    $card_an->execute(array($q));
-                    $kontrol_an = $card_an->fetch(PDO::FETCH_ASSOC);
-                    if ($kontrol_an > 0) {
-                        $sorgu = "SELECT * FROM tarayici_card_anime_users WHERE user_card_title = '$q'";
-                        $sorgukontrol = $db->query($sorgu);
-                        while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
-                            echo '<div class="card-header">
+                }
+                ?>
+            </div>
+            <div class="card text-white mb-3" style="background-color: #3c3c3c;">
+                <?php
+                $card_an = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
+                $card_an->execute(array($q));
+                $kontrol_an = $card_an->fetch(PDO::FETCH_ASSOC);
+                if ($kontrol_an > 0) {
+                    $sorgu = "SELECT * FROM tarayici_card_anime_users WHERE user_card_title LIKE '%$q%'; LIMIT 1";
+                    $sorgukontrol = $db->query($sorgu);
+                    while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
+                        echo '<div class="card-header">
                     <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 220px; max-height: 200px;"> 
                     <h1>' . $cikti['user_card_title'] . '</h1>
                     <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
@@ -212,38 +213,33 @@ session_start();
                     </a>
                     
                 ';
-                            $animelink = $db->prepare("SELECT user_link_name, user_link_link, user_link_anime FROM tarayici_user_link");
-                            $animelink->execute(array($q));
-                            $kontrol_link = $animelink->fetch(PDO::FETCH_ASSOC);
-                            if($kontrol_link > 0){
-                                $linksorgu = "SELECT * FROM tarayici_user_link WHERE user_link_anime = '$q'";
-                                $linksorgukontrol = $db->query($linksorgu);
-                                while($button = $linksorgukontrol->fetch(PDO::FETCH_ASSOC)){
-                                    echo '<a href="' . $button['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px; margin-right: 3px;" data-ripple-color="dark">' . $button['user_link_name'] . '</div></a>';
-                                }
-                            }else{
-
+                        $link_anime = "SELECT * FROM tarayici_user_link";
+                        $link_kontrol = $db->query($link_anime);
+                        while($cikti2 = $link_kontrol->fetch(PDO::FETCH_ASSOC)){
+                            if($cikti2['user_link_anime'] == $cikti['user_card_title']){
+                                echo '<a href="' . $cikti2['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px; margin-left: 3px;" data-ripple-color="dark">' . $cikti2['user_link_name'] . '</div></a>';
                             }
                         }
                     }
-                    ?>
-                </div>
+                }
+                ?>
             </div>
-                <div class="col-md-12 text-center">
-                    <?php
-                    require 'php/anime_ekle.php';
-                    ?>
-                </div>
-                <div class="card col-md-7 f-left" style="background-color: #3c3c3c; max-width: 750px;">
-                    <div class="gcse-searchresults-only" style="margin-left: -6px;" id="GoogleImage" runat="server"></div>
-                </div>
-                <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c">
-                    <?php
-                        $card_anime = $db->prepare("SELECT tarayici_card_anime_users.user_card_title, tarayici_card_anime_users.user_card_muted, tarayici_card_anime_users.user_card_text, tarayici_card_anime_users.user_card_image, tarayici_card_anime_users.user_card_link, tarayici_card_anime_users.user_card_name, tarayici_card_anime_users.user_card_username tarayici_user_link.user_link_anime, tarayici_user_link.user_link_name, tarayici_user_link.user_link_link FROM tarayici_card_anime_users, tarayici_user_link WHERE tarayici_card_anime_users.user_card_title = tarayici_card_anime_users.user_card_name");
-                        $anime_sorgu = "SELECT * FROM tarayici_card_anime_users, tarayici_user_link ORDER BY RAND() LIMIT 1";
-                        $anime_sorgukontrol = $db->query($anime_sorgu);
-                        while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
-                            echo '<div class="card-header text-center text-white"><small>Random animeler (Ekleyen: ' . $cikti['user_card_username'] . ')</small></div>
+        </div>
+        <div class="col-md-12 text-center">
+            <?php
+            require 'php/anime_ekle.php';
+            ?>
+        </div>
+        <div class="card col-md-7 f-left" style="background-color: #3c3c3c; max-width: 750px;">
+            <div class="gcse-searchresults-only" style="margin-left: -6px;" id="GoogleImage" runat="server"></div>
+        </div>
+        <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c">
+            <?php
+            $card_anime = $db->prepare("SELECT tarayici_card_anime_users.user_card_title, tarayici_card_anime_users.user_card_muted, tarayici_card_anime_users.user_card_text, tarayici_card_anime_users.user_card_image, tarayici_card_anime_users.user_card_link, tarayici_card_anime_users.user_card_name, tarayici_card_anime_users.user_card_username tarayici_user_link.user_link_anime, tarayici_user_link.user_link_name, tarayici_user_link.user_link_link FROM tarayici_card_anime_users, tarayici_user_link WHERE tarayici_card_anime_users.user_card_title = tarayici_card_anime_users.user_card_name");
+            $anime_sorgu = "SELECT * FROM tarayici_card_anime_users, tarayici_user_link ORDER BY RAND() LIMIT 1";
+            $anime_sorgukontrol = $db->query($anime_sorgu);
+            while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
+                echo '<div class="card-header text-center text-white"><small>Random animeler (Oluşturan Kullanıcı: ' . $cikti['user_card_username'] . ')</small></div>
                             <div class="card-header">
                            <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 150px;"> 
                            <h1 name="title">' . $cikti['user_card_title'] . '</h1>
@@ -251,79 +247,79 @@ session_start();
                            <br>
                            <p>' . $cikti['user_card_text'] . '...</p>
                            <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>';
-                            $link_anime = "SELECT * FROM tarayici_user_link";
-                            $link_kontrol = $db->query($link_anime);
-                            while($cikti2 = $link_kontrol->fetch(PDO::FETCH_ASSOC)){
-                                if($cikti2['user_link_anime'] == $cikti['user_card_title']){
-                                    echo '<a href="' . $cikti2['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px; margin-left: 3px;" data-ripple-color="dark">' . $cikti2['user_link_name'] . '</div></a>';
-                                }
-                            }
-                        }
+                $link_anime = "SELECT * FROM tarayici_user_link";
+                $link_kontrol = $db->query($link_anime);
+                while($cikti2 = $link_kontrol->fetch(PDO::FETCH_ASSOC)){
+                    if($cikti2['user_link_anime'] == $cikti['user_card_title']){
+                        echo '<a href="' . $cikti2['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px; margin-left: 3px;" data-ripple-color="dark">' . $cikti2['user_link_name'] . '</div></a>';
+                    }
+                }
+            }
 
-                        ?>
+            ?>
 
-                    </div><div class="btn-sm btn-outline-info text-center align-self-center" type="button" data-mdb-toggle="modal" data-mdb-target="#animeEkleModal" style="border-radius: 100px; max-width: 300px;" data-ripple-color="dark">Sizde sitenizden link koymak istermisiniz?</div>
-                </div>
-                <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c;">
-                    <div class="card-header text-center text-white"><small>Sponsor</small></div>
-                    <?php
-
-
-                    ?>
-                </div>
-            </div>
-            <div
-                    class="tab-pane fade"
-                    id="pills-profile2"
-                    role="tabpanel"
-                    aria-labelledby="pills-profile-tab2"
-            >
-                Görsel kısmı
-            </div>
-            <div
-                    class="tab-pane fade"
-                    id="pills-contact2"
-                    role="tabpanel"
-                    aria-labelledby="pills-contact-tab2"
-            >
-                Bilgi kısmı
-            </div>
-            <div
-                    class="tab-pane fade"
-                    id="pills-contact3"
-                    role="tabpanel"
-                    aria-labelledby="pills-contact-tab2"
-            >
-                Film kısmı
-            </div>
-            <div
-                    class="tab-pane fade"
-                    id="pills-contact4"
-                    role="tabpanel"
-                    aria-labelledby="pills-contact-tab2"
-            >
-                Akademi kısmı
-            </div>
-        </div>
+        </div><div class="btn-sm btn-outline-info text-center align-self-center" type="button" data-mdb-toggle="modal" data-mdb-target="#animeEkleModal" style="border-radius: 100px; max-width: 300px;" data-ripple-color="dark">Sizde sitenizden link koymak istermisiniz?</div>
     </div>
-    <div
-            class="modal fade"
-            id="animeEkleModal"
-            data-mdb-backdrop="static"
-            data-mdb-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Anime ekle</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <?php
-                    if(isset($_SESSION['isim'])){
-                        echo '<div class="card-body">
+    <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c;">
+        <div class="card-header text-center text-white"><small>Sponsor</small></div>
+        <?php
+
+
+        ?>
+    </div>
+</div>
+<div
+        class="tab-pane fade"
+        id="pills-profile2"
+        role="tabpanel"
+        aria-labelledby="pills-profile-tab2"
+>
+    <div class="gcse-searchresults-only" id="GoogleImage"></div>
+</div>
+<div
+        class="tab-pane fade"
+        id="pills-contact2"
+        role="tabpanel"
+        aria-labelledby="pills-contact-tab2"
+>
+    Bilgi kısmı
+</div>
+<div
+        class="tab-pane fade"
+        id="pills-contact3"
+        role="tabpanel"
+        aria-labelledby="pills-contact-tab2"
+>
+    Film kısmı
+</div>
+<div
+        class="tab-pane fade"
+        id="pills-contact4"
+        role="tabpanel"
+        aria-labelledby="pills-contact-tab2"
+>
+    Akademi kısmı
+</div>
+</div>
+</div>
+<div
+        class="modal fade"
+        id="animeEkleModal"
+        data-mdb-backdrop="static"
+        data-mdb-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Anime ekle</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <?php
+            if(isset($_SESSION['isim'])){
+                echo '<div class="card-body">
 <ul class="nav nav-pills mb-3 justify-content-center" id="ex1" role="tablist">
                                   <li class="nav-item" role="presentation">
                                     <a
@@ -402,12 +398,12 @@ session_start();
                      <form method="post">
                              <select class="form-select mb-4" name="l_name" aria-label="Default animeler">
                     <option selected disabled>Anime seçin</option>';
-                        $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
-                        $anime_sorgu = "SELECT * FROM tarayici_card_anime_users";
-                        $anime_sorgukontrol2 = $db->query($anime_sorgu);
-                        while ($cikti = $anime_sorgukontrol2->fetch(PDO::FETCH_ASSOC)) {
-                            echo '<option value="'.$cikti['user_card_title'].'">'.$cikti['user_card_title'].'</option>';
-                        }
+                $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
+                $anime_sorgu = "SELECT * FROM tarayici_card_anime_users";
+                $anime_sorgukontrol2 = $db->query($anime_sorgu);
+                while ($cikti = $anime_sorgukontrol2->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<option value="'.$cikti['user_card_title'].'">'.$cikti['user_card_title'].'</option>';
+                }
                 echo '</select>
                           <div class="form-outline mb-4">
                             <input type="text" name="l_site" id="form5Example1" class="form-control" />
@@ -424,23 +420,23 @@ session_start();
                      </form>
                   </div>
 </div>';
-                    }elseif(!isset($_SESSION['isim'])){
-                        echo '<div class="card-body"><div class="alert alert-danger" role="alert">
+            }elseif(!isset($_SESSION['isim'])){
+                echo '<div class="card-body"><div class="alert alert-danger" role="alert">
                                   ANİME EKLEMENİZ İÇİN GİRİŞ YAPMANIZ GEREKMEKTEDİR!
                                 </div></div>';
-                    }
-                ?>
-            </div>
+            }
+            ?>
         </div>
     </div>
 </div>
+</div>
 
-    <script async src="https://cse.google.com/cse.js?cx=89ecf14465e74f30b"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
-    <script src="js/mdb.min.js"></script>
+<script async src="https://cse.google.com/cse.js?cx=89ecf14465e74f30b"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+<script src="js/mdb.min.js"></script>
 </body>
 
