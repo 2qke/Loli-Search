@@ -266,7 +266,7 @@ session_start();
 
         ?>
     </div>
-
+</div>
 <div
         class="tab-pane fade"
         id="pills-profile2"
@@ -438,4 +438,3 @@ session_start();
 <script src="js/main.js"></script>
 <script src="js/mdb.min.js"></script>
 </body>
-</html>
