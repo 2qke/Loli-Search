@@ -123,14 +123,14 @@ session_start();
             </script>
             <!--Tarih - Saat card-->
             <div class="col-md-2" style="margin-left: -20px;"></div>
-            <div class="col-sm-4" id="card1">
+            <div class="col-sm-4 mb-2" id="card1">
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-text fontlu" id="time"></h1>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 mb-2">
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-text fontlu"><?php echo date('d/m/Y'); ?></h1>
@@ -138,7 +138,14 @@ session_start();
                 </div>
             </div>
         </div>
+        <?php
+        if(isset($_SESSION['isim'])){
+            echo '<div class="row align-items-center justify-content-center"><div class="alert alert-info col-md-7 text-center" role="alert"><i class="bi bi-info-square"></i> Sayın kullanıcımız güvenlik protokollerimiz sebebiyle bilgileriniz sunucularımızda (Session) tutulmaktadır eğer ki mevcut tarayıcı kapatılırsa hesap bilgilerinizi girerek tekrardan giriş yapmanız gerekmektedir (Bilgileriniz silinmez yanlızca oturumunuz kapanır) Anlayışınız için teşekkürler </div>
+                    </div> ';
+        }
+        ?>
     </div>
+
         <!--Kayit - Giriş modal-->
         <div class="modal fade" id="modalKayit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
