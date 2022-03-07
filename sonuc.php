@@ -239,8 +239,8 @@ session_start();
                 </div>
                 <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c">
                     <?php
-                        $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
-                        $anime_sorgu = "SELECT * FROM tarayici_card_anime_users ORDER BY RAND() LIMIT 1";
+                        $card_anime = $db->prepare("SELECT tarayici_card_anime_users.user_card_title, tarayici_card_anime_users.user_card_muted, tarayici_card_anime_users.user_card_text, tarayici_card_anime_users.user_card_image, tarayici_card_anime_users.user_card_link, tarayici_card_anime_users.user_card_name, tarayici_card_anime_users.user_card_username tarayici_user_link.user_link_anime, tarayici_user_link.user_link_name, tarayici_user_link.user_link_link FROM tarayici_card_anime_users, tarayici_user_link WHERE tarayici_card_anime_users.user_card_title = tarayici_card_anime_users.user_card_name");
+                        $anime_sorgu = "SELECT * FROM tarayici_card_anime_users, tarayici_user_link ORDER BY RAND() LIMIT 1";
                         $anime_sorgukontrol = $db->query($anime_sorgu);
                         while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
                             echo '<div class="card-header text-center text-white"><small>Random animeler (Ekleyen: ' . $cikti['user_card_username'] . ')</small></div>
@@ -251,9 +251,22 @@ session_start();
                            <br>
                            <p>' . $cikti['user_card_text'] . '...</p>
                            <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>';
-
-
+                            $link_anime = "SELECT * FROM tarayici_user_link, tarayici_card_anime_users";
+                            $link_kontrol = $db->query($link_anime);
+                            $toplam = $db->prepare("SELECT tarayici_user_link.user_link_anime, tarayici_card_anime_users.user_card_title FROM tarayici_user_link, tarayici_card_anime_users WHERE tarayici_user_link.user_link_anime = tarayici_card_anime_users.user_card_title");
+                            $toplam->execute();
+                            $x = $toplam->fetchColumn();
+                            while($cikti2 = $link_kontrol->fetch(PDO::FETCH_ASSOC)){
+                                if($cikti2['user_link_anime'] == $cikti['user_card_title']){
+                                    echo '<a href="' . $cikti2['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px; margin-left: 3px;" data-ripple-color="dark">' . $cikti2['user_link_name'] . '</div></a>';
+                                   $x--;
+                                   if($x == 0){
+                                       break;
+                                   }
+                                }
+                            }
                         }
+
                         ?>
 
                     </div><div class="btn-sm btn-outline-info text-center align-self-center" type="button" data-mdb-toggle="modal" data-mdb-target="#animeEkleModal" style="border-radius: 100px; max-width: 300px;" data-ripple-color="dark">Sizde sitenizden link koymak istermisiniz?</div>
