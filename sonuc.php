@@ -182,9 +182,12 @@ session_start();
                     <br>
                     <p style="max-width: 1010x;">'. $cikti['card_text'] .'...</p>
                     <a href="'. $cikti['card_link'] .'"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">'. $cikti['card_kaynak'] .'</div>
-                    </a>
-                    
-                </div>';
+                    </a>';
+                        if($q == "lgbt"){
+                            echo '<a href="https://tr.wikipedia.org/wiki/Ahlaks%C4%B1zl%C4%B1k"><div class="btn btn-outline-warning f-right" style="border-radius: 100px;" data-ripple-color="dark">🤣</div></a>';
+                        }
+
+
                     }
                 }else{
                     echo '<div class="card-header">
@@ -212,6 +215,7 @@ session_start();
                     </a>
                     
                 ';
+
                         $link_anime = "SELECT * FROM tarayici_user_link";
                         $link_kontrol = $db->query($link_anime);
                         while($cikti2 = $link_kontrol->fetch(PDO::FETCH_ASSOC)){
