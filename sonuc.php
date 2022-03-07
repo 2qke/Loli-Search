@@ -439,4 +439,3 @@ session_start();
 <script src="js/main.js"></script>
 <script src="js/mdb.min.js"></script>
 </body>
-
