@@ -168,15 +168,14 @@ session_start();
         >
             <div class="card text-white mb-3" style="background-color: #3c3c3c;">
                 <?php
-
                 $card_wiki = $db->prepare("SELECT card_baslik, card_muted, card_text, card_image FROM tarayici_card_wiki ");
                 $card_wiki->execute(array($q));
                 $kontrol = $card_wiki->fetch(PDO::FETCH_ASSOC);
                 if ($kontrol > 0) {
-                    $sorgu = "SELECT * FROM tarayici_card_wiki WHERE card_baslik LIKE '%$q%';";
+                    $sorgu = "SELECT * FROM tarayici_card_wiki WHERE card_baslik LIKE '%$q%' LIMIT 1;";
                     $sorgukontrol = $db->query($sorgu);
                     while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
-                        echo '<div class="card-header">
+                        echo '<div class="card-header text-center text-white">Loli Wiki</div><div class="card-header">
                     <img src="'.$cikti['card_image'].'" class="rounded-1 f-right" style="max-width: 220px; max-height: 200px;"> 
                     <h1>'. $cikti['card_baslik'] .'</h1>
                     <h5 class="text-muted">'. $cikti['card_muted'] .'</h5>
@@ -203,7 +202,7 @@ session_start();
                     $sorgu = "SELECT * FROM tarayici_card_anime_users WHERE user_card_title LIKE '%$q%'; LIMIT 1";
                     $sorgukontrol = $db->query($sorgu);
                     while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
-                        echo '<div class="card-header">
+                        echo '<div class="card-header text-center text-white">Loli Anime Wiki</div><div class="card-header">
                     <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 220px; max-height: 200px;"> 
                     <h1>' . $cikti['user_card_title'] . '</h1>
                     <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
@@ -267,7 +266,7 @@ session_start();
 
         ?>
     </div>
-</div>
+
 <div
         class="tab-pane fade"
         id="pills-profile2"
@@ -439,3 +438,4 @@ session_start();
 <script src="js/main.js"></script>
 <script src="js/mdb.min.js"></script>
 </body>
+</html>
