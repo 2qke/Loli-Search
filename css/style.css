@@ -142,6 +142,10 @@ hr.ince {
     padding: 0
 }
 
+.gsc-cursor-page{
+    color: #FFFFFF!important;
+}
+
 .gsc-above-wrapper-area {
     border-bottom: 0 solid #3c3c3c !important;
     padding: 0 0 0 0 !important;
@@ -231,7 +235,7 @@ hr.ince {
 }
 
 .gsc-cursor-page{
-    color: #FFFFFF;
+    color: #FFFFFF!important;
 }
 
 .gcsc-find-more-on-google-root .gcsc-more-maybe-branding-box{
@@ -250,7 +254,8 @@ hr.ince {
     text-align: center !important;
     margin: 6px 0 0 12px !important;
     background-color: transparent !important;
-    border-radius: 6px !important
+    border-radius: 6px !important;
+    color: #FFFFFF!important;
 }
 
 .gsc-results .gsc-cursor-box .gsc-cursor-page {
@@ -407,7 +412,7 @@ hr.ince {
     font-weight: normal !important;
     border: 0 solid transparent !important;
     background-color: transparent !important;
-    color: transparent !important
+    color: gray !important
 }
 
 .gsc-cursor-page {
