@@ -63,27 +63,51 @@ elseif(isset($_POST['l'])){
                   <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                 </div>';
     } else{
-        try {
-            $sorgu = $db ->prepare('INSERT INTO tarayici_user_link (user_link_name, user_link_link, user_link_anime ,user_link_username) VALUES (?,?,?,?)');
-            $ekle = $sorgu ->execute([
-                $site, $link, $name, $user
-            ]);
-        }catch (Exception $e){
-            echo $e->getMessage();
-        }
-        if ($ekle) {
+        $AnimeLinkSay2 = $db->prepare("SELECT * FROM tarayici_user_link WHERE user_link_link = ?");
+        $AnimeLinkSay2->execute(array($link));
+        $kontrol2 = $AnimeLinkSay2->fetch(PDO::FETCH_ASSOC);
+        if($kontrol2 > 0){
             echo '
+                <div class="alert alert-warning alert-dismissible fade show col-md-12" role="alert">
+                  <strong>Dikkat!</strong> Girmiş olduğunuz Anime linki zaten daha önceden girilmiş.
+                  <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                </div>';
+        }else{
+            $AnimeLinkSaySon = $db->prepare("SELECT * FROM tarayici_user_link WHERE user_link_anime = ?");
+            $AnimeLinkSaySon->execute(array($name));
+            $kontrol3 = $AnimeLinkSaySon->fetch(PDO::FETCH_ASSOC);
+            if($kontrol3 > 2){
+                echo '
+                <div class="alert alert-warning alert-dismissible fade show col-md-12" role="alert">
+                  <strong>Dikkat!</strong> Bir animeye 3ten fazla link eklenemez.
+                  <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }else{
+                try {
+                    $sorgu = $db ->prepare('INSERT INTO tarayici_user_link (user_link_name, user_link_link, user_link_anime ,user_link_username) VALUES (?,?,?,?)');
+                    $ekle = $sorgu ->execute([
+                        $site, $link, $name, $user
+                    ]);
+                }catch (Exception $e){
+                    echo $e->getMessage();
+                }
+                if ($ekle) {
+                    echo '
                 <div class="alert alert-info alert-dismissible fade show col-md-12" role="alert">
                   Girmiş olduğunuz anime linki <strong>Başarlıyla</strong> Eklenmiştir...
                   <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                 </div>';
-        } else {
-            echo '
+                } else {
+                    echo '
                 <div class="alert alert-danger alert-dismissible fade show col-md-12" role="alert">
                   <strong>Hata!</strong> Beklenmedik bir hata meydana geldi lütfen daha sonra tekrar deneyin.
                   <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                 </div>';
+                }
+            }
+
         }
+
     }
 
 }

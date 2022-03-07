@@ -75,7 +75,7 @@ session_start();
             <img src="images/loli.png" class="img-fluid mb-3" style="max-width: 250px; max-height: 250px;"><br>
             <div class="col-md-6">
                 <div class="form">
-                    <form method="get">
+                    <form method="get" action="sonuc.php">
                         <i class="bi-search" style="margin-top: 5px;"></i>
                         <input type="text" class="form-control form-input" id="inputValue" value="<?php $q = $_GET['q']; echo $q;?>" aria-label="Search" aria-describedby="basic-addon2" name="q" placeholder="Herhangi birşey aratın...">
                         <span class="sol-taraf">
@@ -211,24 +211,24 @@ session_start();
                     <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div>
                     </a>
                     
-                </div>';
-                            $card_linkler = $db->prepare("SELECT * FROM tarayici_card_anime_users, tarayici_user_link WHERE tarayici_card_anime_users.user_card_title = tarayici_user_link.user_link_anime");
-                            while ($ciktikontrol = $card_linkler->fetch(PDO::FETCH_ASSOC)){
-                                if($ciktikontrol['user_card_title'] == $ciktikontrol['user_link_anime']){
-                                    echo '<a href="' . $cikti['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_link_name'] . '</div></a>';
+                ';
+                            $animelink = $db->prepare("SELECT user_link_name, user_link_link, user_link_anime FROM tarayici_user_link");
+                            $animelink->execute(array($q));
+                            $kontrol_link = $animelink->fetch(PDO::FETCH_ASSOC);
+                            if($kontrol_link > 0){
+                                $linksorgu = "SELECT * FROM tarayici_user_link WHERE user_link_anime = '$q'";
+                                $linksorgukontrol = $db->query($linksorgu);
+                                while($button = $linksorgukontrol->fetch(PDO::FETCH_ASSOC)){
+                                    echo '<a href="' . $button['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px; margin-right: 3px;" data-ripple-color="dark">' . $button['user_link_name'] . '</div></a>';
                                 }
-                                else{
-                                    echo '<h1 style="color: white">HATA</h1>';
-                                }
+                            }else{
+
                             }
                         }
-                    }else{
-                        echo '<div class="card-header">
-                    <h1 class="text-center">Opps! bir hata meydana geldi!</h1>
-                </div>';
                     }
                     ?>
                 </div>
+            </div>
                 <div class="col-md-12 text-center">
                     <?php
                     require 'php/anime_ekle.php';
@@ -251,15 +251,7 @@ session_start();
                            <br>
                            <p>' . $cikti['user_card_text'] . '...</p>
                            <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>';
-                           $card_linkler = $db->prepare("SELECT * FROM tarayici_card_anime_users INNER JOIN tarayici_user_link ON tarayici_card_anime_users.user_card_title = tarayici_user_link.user_link_animee");
-                           while ($ciktikontrol = $card_linkler->fetch(PDO::FETCH_ASSOC)){
-                               if($ciktikontrol['user_card_title'] == $ciktikontrol['user_link_anime']){
-                                   echo '<a href="' . $cikti['user_link_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_link_name'] . '</div></a>';
-                               }
-                               else{
-                                   echo '<h1 style="color: white">HATA</h1>';
-                               }
-                           }
+
 
                         }
                         ?>
