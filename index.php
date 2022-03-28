@@ -140,7 +140,7 @@ session_start();
         </div>
         <?php
         if(isset($_SESSION['isim'])){
-            echo '<div class="row align-items-center justify-content-center"><div class="alert alert-info col-md-7 text-center" role="alert"><i class="bi bi-info-square"></i> Sayın kullanıcımız güvenlik protokollerimiz sebebiyle bilgileriniz sunucularımızda (Session) tutulmaktadır eğer ki mevcut tarayıcı kapatılırsa hesap bilgilerinizi girerek tekrardan giriş yapmanız gerekmektedir (Bilgileriniz silinmez yanlızca oturumunuz kapanır) Anlayışınız için teşekkürler </div>
+            echo '<div class="row align-items-center justify-content-center"><div class="alert alert-info col-md-7 text-center" role="alert"><i class="bi bi-info-square"></i> <small>Sayın kullanıcımız güvenlik protokollerimiz sebebiyle bilgileriniz sunucularımızda (Session) tutulmaktadır eğer ki mevcut tarayıcı kapatılırsa hesap bilgilerinizi girerek tekrardan giriş yapmanız gerekmektedir (Bilgileriniz silinmez yanlızca oturumunuz kapanır) Anlayışınız için teşekkürler</small> </div>
                     </div> ';
         }
         ?>
