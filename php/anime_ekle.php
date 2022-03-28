@@ -76,13 +76,20 @@ elseif(isset($_POST['l'])){
             $AnimeLinkSaySon = $db->prepare("SELECT * FROM tarayici_user_link WHERE user_link_anime = ?");
             $AnimeLinkSaySon->execute(array($name));
             $kontrol3 = $AnimeLinkSaySon->fetch(PDO::FETCH_ASSOC);
-            if($kontrol3 > 2){
+            if($kontrol3 == 4){
                 echo '
                 <div class="alert alert-warning alert-dismissible fade show col-md-12" role="alert">
-                  <strong>Dikkat!</strong> Bir animeye 3ten fazla link eklenemez.
+                  <strong>Dikkat!</strong> Bir Animeye 4ten fazla link eklenemez.
                   <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
                 </div>';
-            }else{
+            }elseif ($kontrol3 == 0) {
+                echo '
+                <div class="alert alert-warning alert-dismissible fade show col-md-12" role="alert">
+                  <strong>Dikkat!</strong> Girmiş olduğunuz anime bulunamadı!
+                  <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                </div>';
+            }
+            else{
                 try {
                     $sorgu = $db ->prepare('INSERT INTO tarayici_user_link (user_link_name, user_link_link, user_link_anime ,user_link_username) VALUES (?,?,?,?)');
                     $ekle = $sorgu ->execute([

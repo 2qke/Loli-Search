@@ -90,7 +90,7 @@ session_start();
                     <small class="text-black">İletişim adrressleri için tıklayın</small>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item" href="#">Discord: Aikaiz3L#3200</a></li>
-                        <li><a class="dropdown-item" href="#">İnstagram: yasinsan__</a></li>
+                        <li><a class="dropdown-item" href="#">İnstagram: yasin.dev__</a></li>
                     </ul>
                 </div>
             </div>
@@ -103,7 +103,7 @@ session_start();
                 <div class="form">
                     <form method="get" action="sonuc.php">
                         <i class="bi-search"></i>
-                        <input type="text" class="form-control form-input" aria-label="Search" aria-describedby="basic-addon2" autofocus name="q" id="q" value="" target="_blank" placeholder="Herhangi birşey aratın...">
+                        <input type="text" class="form-control form-input" aria-label="Search" aria-describedby="basic-addon2" autofocus name="q" id="q" value="" target="_blank" placeholder="Herhangi birşey aratın..." required>
                         <span class="sol-taraf">
                             <a href="#" class="text-black" data-mdb-container="body" data-mdb-toggle="popover" data-mdb-placement="right" data-mdb-trigger="focus" data-mdb-content="Sayın kullanıcımız bu özellik şuanda kullanılmamaktadır"><i class="bi-mic"></i></a>
                         </span>
@@ -140,7 +140,11 @@ session_start();
         </div>
         <?php
         if(isset($_SESSION['isim'])){
-            echo '<div class="row align-items-center justify-content-center"><div class="alert alert-info col-md-7 text-center" role="alert"><i class="bi bi-info-square"></i> <small>Sayın kullanıcımız güvenlik protokollerimiz sebebiyle bilgileriniz sunucularımızda (Session) tutulmaktadır eğer ki mevcut tarayıcı kapatılırsa hesap bilgilerinizi girerek tekrardan giriş yapmanız gerekmektedir (Bilgileriniz silinmez yanlızca oturumunuz kapanır) Anlayışınız için teşekkürler</small> </div>
+            echo '<div class="row align-items-center justify-content-center">
+            <div class="alert alert-info alert-dismissible fade show col-md-9 text-center" role="alert">
+            <i class="bi bi-info-square"></i> Sayın kullanıcımız güvenlik protokollerimiz sebebiyle bilgileriniz sunucularımızda (Session) tutulmaktadır eğer ki mevcut tarayıcı kapatılırsa hesap bilgilerinizi girerek tekrardan giriş yapmanız gerekmektedir (Bilgileriniz silinmez yanlızca oturumunuz kapanır) Anlayışınız için teşekkürler
+                              <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                            </div>
                     </div> ';
         }
         ?>
