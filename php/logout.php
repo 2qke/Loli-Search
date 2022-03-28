@@ -3,4 +3,4 @@
 session_start();
 session_unset();
 session_destroy();
-header("location:\Loli-Search-main/index.php");
+header("location:\Loli-Search/index.php");
