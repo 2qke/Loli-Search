@@ -14,62 +14,17 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Quicksand:wght@300&family=Zen+Kaku+Gothic+Antique:wght@300&display=swap" rel="stylesheet">
+    <style>
+        .fontlu{
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
 
 </head>
 <body style="background-color: #333333">
-
-<div class="offcanvas offcanvas-end" style="max-width: 300px" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <style>
-        ::-webkit-scrollbar {
-            width: 4px;
-            color: #3c3c3c;
-
-        }
-    </style>
-    <div class="offcanvas-header">
-        <h5 id="offcanvasRightLabel">Kontrol Panel</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-        <br>
-        <select class="form-select mb-3" aria-label="Default temalar">
-            <option selected disabled>Temalar</option>
-            <option value="1">Aydınlık</option>
-            <option value="2">Karanlık</option>
-            <option value="3">Gece</option>
-        </select>
-        <select class="form-select mb-3" aria-label="Disabled diller" disabled>
-            <option selected disabled>Diller</option>
-            <option value="1">Aydınlık</option>
-            <option value="2">Karanlık</option>
-            <option value="3">Gece</option>
-        </select>
-        <br>
-        <a class="btn btn-outline-info mb-3" data-ripple-color="dark" href="#">Ayarlar</a><br>
-        <a class="btn btn-outline-secondary mb-3" data-ripple-color="dark" href="#">Hakkımızda</a>
-        <a class="btn btn-outline-primary mb-3" data-ripple-color="dark" href="#">Manifesto'muz</a>
-        <a class="btn btn-outline-success mb-3" data-ripple-color="dark" href="#">Güncelleme notları</a><br>
-        <hr class="ince">
-        <div class="col-md-12">
-            <h3 class="text-center fontlu">Loli Search</h3>
-            <p class="text-center">Loli Search'te aramalarınız kaydedilmez. Kimse sizin kim olduğunuzu bilemez. Loli S. ile tamamen anonim olarak internetin sınırlarını keşfedebilirsiniz!</p>
-        </div>
-        <div class="dropdown">
-            <hr class="ince">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="images/developer.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
-                <h5 class="text-black mb-3" style="margin-top: 5px">Developer: Aikaiz3L</h5>
-            </a>
-            <small class="text-black">İletişim adrressleri için tıklayın</small>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1" style="">
-                <li><a class="dropdown-item" href="#">Discord: Aikaiz3L#3200</a></li>
-                <li><a class="dropdown-item" href="#">İnstagram: yasinsan__</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center" style="margin-top: -40px">
             <img src="images/loli.png" class="img-fluid mb-3" style="max-width: 250px; max-height: 250px;"><br>
@@ -177,8 +132,8 @@ session_start();
                         while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
                             echo '<div class="card-header text-center text-white">Loli Wiki</div><div class="card-header">
                         <img src="'.$cikti['card_image'].'" class="rounded-1 f-right" style="max-width: 220px; max-height: 250px;"> 
-                        <h1>'. $cikti['card_baslik'] .'</h1>
-                        <h5 class="text-muted">'. $cikti['card_muted'] .'</h5>
+                        <h1 class="fontlu">'. $cikti['card_baslik'] .'</h1>
+                        <h5 class="text-muted fontlu">'. $cikti['card_muted'] .'</h5>
                         <br>
                         <p style="max-width: 1010x;" class="mb-5">'. $cikti['card_text'] .'...</p>
                         <a href="'. $cikti['card_link'] .'"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">'. $cikti['card_kaynak'] .'</div></div>
@@ -206,16 +161,15 @@ session_start();
                         $sorgukontrol = $db->query($sorgu);
                         while ($cikti = $sorgukontrol->fetch(PDO::FETCH_ASSOC)){
                             echo '<div class="card-header text-center text-white">Loli Anime Wiki</div><div class="card-header">
-                        <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 220px; max-height: 270px;"> 
-                        <h1>' . $cikti['user_card_title'] . '</h1>
-                        <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
+                        <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right mb-1 col-md img-fluid" style="max-width: 220px; max-height: 270px;"> 
+                        <h1 class="fontlu">' . $cikti['user_card_title'] . '</h1>
+                        <h5 class="text-muted fontlu">' . $cikti['user_card_muted'] . '</h5>
                         <br>
-                        <p style="max-width: 1010x;">' . $cikti['user_card_text'] . '...</p>
+                        <p class="mx-1" style="max-width: 1010x;">' . $cikti['user_card_text'] . '...</p>
                         <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div>
                         </a>
                         
                     ';
-
                             $link_anime = "SELECT * FROM tarayici_user_link";
                             $link_kontrol = $db->query($link_anime);
                             while($cikti2 = $link_kontrol->fetch(PDO::FETCH_ASSOC)){
@@ -243,9 +197,9 @@ session_start();
                     while ($cikti = $anime_sorgukontrol->fetch(PDO::FETCH_ASSOC)) {
                         echo '<div class="card-header text-center text-white"><small>Random Animeler (Oluşturan Kullanıcı: ' . $cikti['user_card_username'] . ')</small></div>
                                 <div class="card-header">
-                               <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right" style="max-width: 150px;"> 
-                               <h1 name="title">' . $cikti['user_card_title'] . '</h1>
-                               <h5 class="text-muted">' . $cikti['user_card_muted'] . '</h5>
+                               <img src="' . $cikti['user_card_image'] . '" class="rounded-1 f-right " style="max-width: 150px;"> 
+                               <h1 class="fontlu">' . $cikti['user_card_title'] . '</h1>
+                               <h5 class="text-muted fontlu">' . $cikti['user_card_muted'] . '</h5>
                                <br>
                                <p>' . $cikti['user_card_text'] . '...</p>
                                <a href="' . $cikti['user_card_link'] . '"><div class="btn btn-outline-white" style="border-radius: 100px;" data-ripple-color="dark">' . $cikti['user_card_name'] . '</div></a>';
@@ -259,13 +213,20 @@ session_start();
                     }
 
                     ?>
-
-                </div><div class="btn-sm btn-outline-info text-center align-self-center" type="button" data-mdb-toggle="modal" data-mdb-target="#animeEkleModal" style="border-radius: 100px; max-width: 300px;" data-ripple-color="dark">Sizde sitenizden link koymak istermisiniz?</div>
+                </div>
+                <div class="btn-sm btn-outline-info text-center align-self-center" type="button" data-mdb-toggle="modal" data-mdb-target="#animeEkleModal" style="border-radius: 100px; max-width: 300px;" data-ripple-color="dark">Sizde sitenizden link koymak istermisiniz?</div>
             </div>
             <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c;">
                 <div class="card-header text-center text-white"><small>Sponsor</small></div>
                 <div class="card-header mt-5 text-center">
                     SPONSOR REKLAM SECTİON
+                </div>
+            </div>
+            <div class="card text-white f-right col-md-5" style="background-color: #3c3c3c;">
+                <div class="card-header text-center text-white"><small>Github & Discord</small></div>
+                <div class="mt-5 text-center">
+                    <div class="embed-responsive">
+                        <iframe class="embed-responsive-item" src="https://discord.com/widget?id=865254296098308096&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>                    </div>
                 </div>
             </div>
     <div
@@ -365,9 +326,9 @@ session_start();
                             <div class="form-outline mb-4">
                             <input type="text" name="l_name" list="anime_name" id="form5Example1" class="form-control"required />
                             <label class="form-label" for="form5Example1">Anime Adı</label>
-                          </div><datalist id="anime_name">';
+                          </div><datalist id="anime_name" max-value="5">';
                     $card_anime = $db->prepare("SELECT user_card_title, user_card_muted, user_card_text, user_card_image, user_card_link, user_card_name, user_card_username FROM tarayici_card_anime_users ");
-                    $anime_sorgu = "SELECT * FROM tarayici_card_anime_users";
+                    $anime_sorgu = "SELECT * FROM tarayici_card_anime_users ";
                     $anime_sorgukontrol2 = $db->query($anime_sorgu);
                     while ($cikti = $anime_sorgukontrol2->fetch(PDO::FETCH_ASSOC)) {
                         echo '<option value="'.$cikti['user_card_title'].'">'.$cikti['user_card_title'].'</option>';
